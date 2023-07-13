@@ -1,0 +1,159 @@
+html,
+body {
+  height: 100%;
+}
+
+body,
+.signin {
+  background-color: #d3d3d3;
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .login {
+  justify-content: center;
+  height: 350px;
+  width: 400px;
+  margin: auto;
+  padding: 60px 60px;
+  background-color: rgba(124, 19, 61, 0.7215686275);
+  background-size: cover;
+  box-shadow: 0px 30px 60px -5px rgba(144, 12, 63, 0.7058823529);
+  border-radius: 30px;
+}
+body .login .login__header--active {
+  border-bottom: 2px solid white;
+}
+body .login .register__header {
+  color: rgba(255, 255, 255, 0.5);
+}
+body .login h2 {
+  padding-left: 12px;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  letter-spacing: 2px;
+  display: inline-block;
+  font-weight: 100;
+}
+body .login h2:first-child {
+  padding-left: 0px;
+}
+body .login span {
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: 0.4;
+  display: inline-block;
+  position: relative;
+  top: -65px;
+  transition: all 0.5s ease-in-out;
+  color: white;
+}
+body .login .input {
+  border: none;
+  width: 89%;
+  padding: 10px 20px;
+  display: block;
+  height: 15px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0);
+  overflow: hidden;
+  margin-top: 15px;
+  transition: all 0.5s ease-in-out;
+}
+body .login .input:focus {
+  outline: 0;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0);
+}
+body .login .input:focus + span {
+  opacity: 0.6;
+}
+body .login input[type=email],
+body .login input[type=password] {
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+}
+body .login input {
+  display: inline-block;
+  padding-top: 20px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+body .login h2,
+body .login span {
+  margin-left: 20px;
+}
+body .login .span {
+  font-size: 14px;
+}
+body .login label {
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+body .login .login__error {
+  text-align: center;
+  font-size: 14px;
+  color: #FFF;
+}
+body .login .login__button {
+  background-color: rgba(144, 12, 63, 0.6862745098);
+  color: #FFF;
+  width: 100%;
+  padding: 10px 20px;
+  display: block;
+  height: 39px;
+  border-radius: 20px;
+  margin-top: 30px;
+  transition: all 0.5s ease-in-out;
+  border: none;
+  text-transform: uppercase;
+}
+body .login .login__button:hover {
+  border: 1px solid white;
+  background: #900c3f;
+  box-shadow: 0px 4px 35px -5px #900c3f;
+  cursor: pointer;
+}
+body .login .remove__button,
+body .login .update__button {
+  transition: all 0.5s ease-in-out;
+  border: 1px solid white;
+  color: white;
+  text-align: right;
+  font-style: inherit;
+  margin-top: 25px;
+  display: inline-block;
+  padding: 3px 15px;
+  border-radius: 20px;
+}
+body .login .remove__button {
+  margin-left: 15px;
+}
+body .login .remove__button:hover,
+body .login .update__button:hover {
+  background: #900c3f;
+  box-shadow: 0px 4px 35px -5px #900c3f;
+  cursor: pointer;
+}
+body .login #idUserName:hover,
+body .login #idPassword:hover {
+  cursor: cell;
+}
+body .login .login__header--active:hover,
+body .login .register__header:hover {
+  cursor: pointer;
+}
+body .login .login__button:focus {
+  outline: none;
+}
