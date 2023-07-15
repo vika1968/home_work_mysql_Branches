@@ -5,6 +5,7 @@ import { useAppSelector } from "../../app/hooks";
 import { User } from "../../features/user/userModel";
 import { Link, useNavigate } from "react-router-dom";
 import { OrderItem } from "../../features/user/orderModel";
+import  {SERVER_URL} from "../../config/config"
 
 const OrderResults = () => {
   const [results, setResults] = useState([]);
@@ -15,7 +16,7 @@ const OrderResults = () => {
     const fetchOrderResults = async () => {
       try {
         if (user && user.length > 0) {
-          const response = await axios.get(`/api/orders/${user[0].userID}`);
+          const response = await axios.get(`${SERVER_URL}/api/orders/${user[0].userID}`);
           setResults(response.data.orders);
         } else {
           alert("You are not an authorized user. Please login or register.");

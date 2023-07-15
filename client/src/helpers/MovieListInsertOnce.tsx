@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import MovieScheme from './MovieScheme';
+import { SERVER_URL } from "../config/config";
 
 interface MovieSchemeOneTime {
  // movieID: number;
@@ -79,7 +80,7 @@ function handleInsertMovieList() {
     try {
     const { data } = await axios.post(
        //"http://localhost:3000/api/movie/insert-into-movies",
-      "/api/movie",
+      `${SERVER_URL}/api/movie`,
       {   
         title:  movie.title,
         description:  movie.description,

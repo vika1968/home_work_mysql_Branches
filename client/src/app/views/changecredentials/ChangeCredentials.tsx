@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { SERVER_URL } from "../../../config/config";
 
 const ChangeCredentials = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ const ChangeCredentials = () => {
 
   const handleGetUserByID = async () => {
     try {
-      const { data } = await axios.get(`/api/user/${user}`);  
+      const { data } = await axios.get(`${SERVER_URL}/api/user/${user}`);  
 
       if (!data) {
         alert("No valid user");
@@ -66,7 +67,7 @@ const ChangeCredentials = () => {
         }
       }
 
-      const response = await axios.put(`/api/user/update-user`, {
+      const response = await axios.put(`${SERVER_URL}/api/user/update-user`, {
         email: newEmail,
         password: newPassword,
         id: user,

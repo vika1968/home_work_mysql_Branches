@@ -7,6 +7,7 @@ import { userSelector } from "../../features/user/userSlice";
 import axios from "axios";
 import { User } from "../../features/user/userModel";
 import MovieScheme from "../../helpers/MovieScheme";
+import { SERVER_URL } from "../../config/config";
 
 const Movies = () => {
   const [movies, setMovies] = useState<MovieScheme[]>();
@@ -72,7 +73,7 @@ const Movies = () => {
   //-------------Second block useCallback---------------------------------------
   const searchMovies = useCallback(async (query: string) => {
     try {
-      const response = await axios.post("/api/movie/search-movies", { query });     
+      const response = await axios.post(`${SERVER_URL}/api/movie/search-movies`, { query });     
       return response.data;
     } catch (error) {
       console.log(error);

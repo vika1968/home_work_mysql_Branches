@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resetUser } from "../../../features/user/userSlice";
+import { SERVER_URL } from "../../../config/config";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -37,13 +38,13 @@ const Login = () => {
         return;
       }
 
-      const { data } = await axios.post("/api/user/login", { email, password });
+      const { data } = await axios.post(`${SERVER_URL}/api/user/login`, { email, password });
       const { success, userArray } = data;
 
       if (success) {
         const id = userArray[0].userID;
         if (event.target.dataset.value === "RemoveUser") {
-          const deleteResponse = await axios.delete(`/api/user/${id}`);
+          const deleteResponse = await axios.delete(`${SERVER_URL}/api/user/${id}`);
           if (deleteResponse.statusText === "OK") {
             alert("User was successfully deleted.");
 

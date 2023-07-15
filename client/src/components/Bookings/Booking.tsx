@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { Add_Order, reset_Orders, orderSelector } from "../Orders/orderSlice";
 import { OrderScheme } from "../Orders/OrderModel";
 import axios from "axios";
+import { SERVER_URL } from "../../config/config";
 
 const Booking = () => {
   const [movie, setMovie] = useState<MovieScheme | null>(null);
@@ -83,7 +84,7 @@ const Booking = () => {
     try {   
 
       if(orderState.orders.length>0){
-        const response = await axios.post("/api/booking/batch", orders);       
+        const response = await axios.post(`${SERVER_URL}/api/booking/batch`, orders);       
         alert("All your orders have been successfully added.");
         dispatch(reset_Orders())
       }
