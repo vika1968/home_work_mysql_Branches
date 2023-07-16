@@ -13,13 +13,16 @@ const app = (0, express_1.default)();
 const port = process.env.PORT;
 app.use((0, cors_1.default)(corsOptions_1.corsOptions));
 // app.use((req, res, next) => {
-//   // res.header('Access-Control-Allow-Origin', '*'); //The same
-//   res.setHeader("Access-Control-Allow-Origin", "*"); //the same
-//   res.setHeader("Access-Control-Allow-Credentials", "true");
-//   res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH");
-//   res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//   next();
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE');
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers");
+//   res.setHeader('Access-Control-Allow-Credentials', 'true');
+//   // Обработка запроса OPTIONS для предварительной проверки CORS
+//   if (req.method === 'OPTIONS') {
+//     res.sendStatus(200);
+//   } else {
+//     next();
+//   }
 // });
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());

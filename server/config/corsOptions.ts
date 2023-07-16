@@ -27,21 +27,9 @@ import { CorsOptions } from "cors";
 //   optionsSuccessStatus: 200,
 // };
 
-// export const corsOptions: CorsOptions = {
-//   origin: (origin: string | undefined, callback: (error: Error | null, allow?: boolean) => void) => {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS!"));
-//     }
-//   },
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
-
 export const corsOptions: CorsOptions = {
   origin: (origin: string | undefined, callback: (error: Error | null, allow?: boolean) => void) => {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS!"));
@@ -50,4 +38,16 @@ export const corsOptions: CorsOptions = {
   credentials: true,
   optionsSuccessStatus: 200,
 };
+
+// export const corsOptions: any = {
+//   origin: (origin: string , callback: any) => {
+//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS!"));
+//     }
+//   },
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
 

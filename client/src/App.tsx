@@ -8,15 +8,17 @@ import ChangeCredentials from "./app/views/changecredentials/ChangeCredentials";
 import MovieListInsertOnce from "./helpers/MovieListInsertOnce";
 import OrderResults from "./components/Orders/OrderResults";
 import {SERVER_URL} from "./config/config"
+import {disableReactDevTools} from "@fvilers/disable-react-devtools"
+
+//Dlya deploy - deaktivaziya  react dev tools
+//npm i @fvilers/disable-react-devtools  - ustanovim
+
 
 let environment = "DEV"; // menyaetm po neobxodimosti na "PROD"
 let BACKEND_URL: string; 
 
-//environment === "DEV" ? SERVER_URL = "http://localhost:8000" : SERVER_URL = ""
 environment === "DEV" ? BACKEND_URL = SERVER_URL : BACKEND_URL = ""
-
-
-//const {data} = await axios.get(`${SERVER_URL}/api/products`)
+environment === "DEV" ?null : disableReactDevTools()
 
 function App() {
   return (

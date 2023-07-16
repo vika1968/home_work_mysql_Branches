@@ -81,7 +81,7 @@ const Login = () => {
         route = `${SERVER_URL}/api/user/login`;
       }
 
-      const { data } = await axios.post(route, { email, password });
+      const { data } = await axios.post(route, { email, password }, { withCredentials: true });
       const { success, userArray } = data;
 
       if (success) {

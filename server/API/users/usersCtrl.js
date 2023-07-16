@@ -52,7 +52,12 @@ function register(req, res) {
                 throw new Error("Not all fields are available from req.body");
             const { error } = userValidator_1.UserValidation.validate({ email, password });
             if (error) {
-                return res.status(500).send({ success: false, error: "A user with this email address already exists." });
+                return res
+                    .status(500)
+                    .send({
+                    success: false,
+                    error: "A user with this email address already exists.",
+                });
             }
             const salt = bcrypt_1.default.genSaltSync(saltRounds);
             const hash = bcrypt_1.default.hashSync(password, salt);
@@ -66,7 +71,12 @@ function register(req, res) {
                 }
                 const secret = process.env.JWT_SECRET;
                 if (!secret)
-                    return res.status(500).send({ success: false, error: "Couldn't load secret code from .env" });
+                    return res
+                        .status(500)
+                        .send({
+                        success: false,
+                        error: "Couldn't load secret code from .env",
+                    });
                 const insertId = results.insertId;
                 const cookie = { userID: insertId };
                 const JWTCookie = jwt_simple_1.default.encode(cookie, secret);
@@ -108,7 +118,7 @@ exports.register = register;
 //         res.status(500).send({ success: false, error: error.message });
 //     }
 // }
-// 
+//
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -129,8 +139,12 @@ function login(req, res) {
                     if (!secret)
                         throw new Error("Couldn't load secret key from .env file");
                     const JWTCookie = jwt_simple_1.default.encode(cookie, secret);
+                    // res.cookie("userId", results[0].userID, {
+                    //   httpOnly: true,
+                    //   sameSite: "none",
+                    //   secure: true,
+                    // });
                     res.cookie("userId", JWTCookie);
-                    console.log(JWTCookie);
                     res.send({ success: true, userArray: results });
                 }
                 catch (error) {
@@ -151,7 +165,7 @@ function updateUser(req, res) {
         try {
             const { email, password, id } = req.body;
             if (!email || !password || !id) {
-                throw new Error('No data received from the user.');
+                throw new Error("No data received from the user.");
             }
             const { error } = userValidator_1.UserValidation.validate({ email, password });
             if (error) {
@@ -172,7 +186,12 @@ function updateUser(req, res) {
                 }
                 const secret = process.env.JWT_SECRET;
                 if (!secret)
-                    return res.status(500).send({ success: false, error: "Couldn't load secret code from .env" });
+                    return res
+                        .status(500)
+                        .send({
+                        success: false,
+                        error: "Couldn't load secret code from .env",
+                    });
                 const cookie = { userID: id };
                 const JWTCookie = jwt_simple_1.default.encode(cookie, secret);
                 res.cookie("userId", JWTCookie);
@@ -192,14 +211,20 @@ function deleteUser(req, res) {
             if (!id) {
                 return res.status(400).json({ error: "Missing user ID." });
             }
-            res.clearCookie('userId');
+            res.clearCookie("userId");
             const query = `DELETE FROM \`movie-booking\`.\`users\` WHERE userID = ${id}`;
             database_1.default.query(query, (err, result) => {
                 if (err) {
-                    return res.status(500).json({ error: "Something went wrong. Error deleting user from the database." });
+                    return res
+                        .status(500)
+                        .json({
+                        error: "Something went wrong. Error deleting user from the database.",
+                    });
                 }
                 if (result.affectedRows === 0) {
-                    return res.status(404).json({ error: "No user found with the specified ID." });
+                    return res
+                        .status(404)
+                        .json({ error: "No user found with the specified ID." });
                 }
                 return res.status(200).json({ success: "The user has been deleted." });
             });
@@ -220,9 +245,13 @@ function getUserByID(req, res) {
                     return res.status(500).json({ error: "Something went wrong." });
                 }
                 if (result.affectedRows === 0) {
-                    return res.status(500).json({ error: "No user found with the specified ID." });
+                    return res
+                        .status(500)
+                        .json({ error: "No user found with the specified ID." });
                 }
-                return res.status(200).json({ success: "The user has been dedicated.", user: result });
+                return res
+                    .status(200)
+                    .json({ success: "The user has been dedicated.", user: result });
             });
         }
         catch (error) {

@@ -25,20 +25,9 @@ const allowedOrigins_1 = require("./allowedOrigins");
 //   credentials: true,
 //   optionsSuccessStatus: 200,
 // };
-// export const corsOptions: CorsOptions = {
-//   origin: (origin: string | undefined, callback: (error: Error | null, allow?: boolean) => void) => {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS!"));
-//     }
-//   },
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
 exports.corsOptions = {
     origin: (origin, callback) => {
-        if (!origin || allowedOrigins_1.allowedOrigins.indexOf(origin) !== -1) {
+        if (!origin || allowedOrigins_1.allowedOrigins.includes(origin)) {
             callback(null, true);
         }
         else {
@@ -48,3 +37,14 @@ exports.corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200,
 };
+// export const corsOptions: any = {
+//   origin: (origin: string , callback: any) => {
+//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS!"));
+//     }
+//   },
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
