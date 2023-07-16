@@ -8,7 +8,8 @@ import ChangeCredentials from "./app/views/changecredentials/ChangeCredentials";
 import MovieListInsertOnce from "./helpers/MovieListInsertOnce";
 import OrderResults from "./components/Orders/OrderResults";
 import {SERVER_URL} from "./config/config"
-import {disableReactDevTools} from "@fvilers/disable-react-devtools"
+import { disableReactDevTools } from "@fvilers/disable-react-devtools"
+import { isNativeError } from "util/types";
 
 //Dlya deploy - deaktivaziya  react dev tools
 //npm i @fvilers/disable-react-devtools  - ustanovim
@@ -17,8 +18,20 @@ import {disableReactDevTools} from "@fvilers/disable-react-devtools"
 let environment = "DEV"; // menyaetm po neobxodimosti na "PROD"
 let BACKEND_URL: string; 
 
-environment === "DEV" ? BACKEND_URL = SERVER_URL : BACKEND_URL = ""
-environment === "DEV" ?null : disableReactDevTools()
+// environment === "DEV" ? BACKEND_URL = SERVER_URL : BACKEND_URL = ""
+// environment === "DEV" ? null : disableReactDevTools()
+if (environment === "DEV") {
+  BACKEND_URL = SERVER_URL;
+} else {
+  BACKEND_URL = "";
+  disableReactDevTools();
+}
+
+//omRender.com:
+//ne podxodit k react Native
+//opziya Static Site - eto  Deploy dlya  frontend ( Angular, Flutter, React e.t.c.)
+//opziya WEB Service - eto  Deploy dlya backend
+
 
 function App() {
   return (
