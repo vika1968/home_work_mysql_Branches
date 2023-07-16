@@ -15,7 +15,7 @@ import { isNativeError } from "util/types";
 //npm i @fvilers/disable-react-devtools  - ustanovim
 
 
-let environment = "DEV"; // menyaetm po neobxodimosti na "PROD"
+let environment = 'PROD'//"DEV"; // menyaetm po neobxodimosti na "PROD"
 let BACKEND_URL: string; 
 
 // environment === "DEV" ? BACKEND_URL = SERVER_URL : BACKEND_URL = ""
@@ -23,8 +23,8 @@ let BACKEND_URL: string;
 if (environment === "DEV") {
   BACKEND_URL = SERVER_URL;
 } else {
-  BACKEND_URL = "";
-  disableReactDevTools();
+  BACKEND_URL = "https://moovi-booking-back.onrender.com";// suda podstavili
+  disableReactDevTools(); 
 }
 
 //omRender.com:
@@ -32,6 +32,12 @@ if (environment === "DEV") {
 //opziya Static Site - eto  Deploy dlya  frontend ( Angular, Flutter, React e.t.c.)
 //opziya WEB Service - eto  Deploy dlya backend
 
+//https://moovi-booking-back.onrender.com/api/user/login   eto proverka posle render servera
+//https://moovi-booking-back.onrender.com - vot eto poluchili posle render kak URL back
+//Backend vozvrashaet nam requests
+
+//{"error":"Something went wrong."}  poluchili vot etot otvet
+//user ne vidit nativ https://moovi-booking-back.onrender.com . Nash kod clienta  eto vidit
 
 function App() {
   return (
