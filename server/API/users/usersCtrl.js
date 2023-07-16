@@ -80,6 +80,35 @@ function register(req, res) {
     });
 }
 exports.register = register;
+// export async function login(req: express.Request, res: express.Response) {
+//     try {
+//         const { email, password } = req.body;
+//         if (!email || !password)
+//             throw new Error("no data from client login in login");
+//         const query = `SELECT * FROM \`movie-booking\`.\`users\` WHERE email='${email}'`;
+//         connection.query(query, async (err, results: RowDataPacket[], fields) => {
+//             try {
+//                 if (err) throw err;
+//                 if (!Array.isArray(results) || results.length === 0) {
+//                     throw new Error("Email or password doesn't match or user doesn't exists.");
+//                 }
+//                 const isMatch = await bcrypt.compare(password, results[0].password);
+//                 const cookie = { userID: results[0].userID };
+//                 const secret = process.env.JWT_SECRET;
+//                 if (!secret) throw new Error("Couldn't load secret key from .env file");
+//                 const JWTCookie = jwt.encode(cookie, secret);
+//                 res.cookie("userId", JWTCookie);
+//                 console.log(JWTCookie)
+//                 res.send({ success: true, userArray: results });
+//             } catch (error: any) {
+//                 res.status(500).send({ success: false, error: error.message });
+//             }
+//         });
+//     } catch (error: any) {
+//         res.status(500).send({ success: false, error: error.message });
+//     }
+// }
+// 
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -92,7 +121,7 @@ function login(req, res) {
                     if (err)
                         throw err;
                     if (!Array.isArray(results) || results.length === 0) {
-                        throw new Error("Email or password doesn't match or user doesn't exists.");
+                        throw new Error("Email or password doesn't match or user doesn't exist.");
                     }
                     const isMatch = yield bcrypt_1.default.compare(password, results[0].password);
                     const cookie = { userID: results[0].userID };
@@ -101,20 +130,22 @@ function login(req, res) {
                         throw new Error("Couldn't load secret key from .env file");
                     const JWTCookie = jwt_simple_1.default.encode(cookie, secret);
                     res.cookie("userId", JWTCookie);
+                    console.log(JWTCookie);
                     res.send({ success: true, userArray: results });
                 }
                 catch (error) {
+                    console.error(error);
                     res.status(500).send({ success: false, error: error.message });
                 }
             }));
         }
         catch (error) {
+            console.error(error);
             res.status(500).send({ success: false, error: error.message });
         }
     });
 }
 exports.login = login;
-// 
 function updateUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

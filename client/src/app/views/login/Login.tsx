@@ -76,9 +76,9 @@ const Login = () => {
       let route: string;
 
       if (whatClicked === `Register`) {
-        route = "/api/user/register";
+        route = `${SERVER_URL}/api/user/register`;
       } else {
-        route = "/api/user/login";
+        route = `${SERVER_URL}/api/user/login`;
       }
 
       const { data } = await axios.post(route, { email, password });
